@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Control de Finanzas</title>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Encabezado principal -->
+  <header class="site-header">
+    <div class="header-content">
+      <h1>Control de finanzas personales</h1>
+      </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Resumen del dinero -->
+    <section class="balance-seccion">
+      <h2>Balance general</h2>
+
+      <div class="balance">
+        <div class="card saldo">
+          <h3>Saldo actual</h3>
+          <p id="saldo">$ 0</p>
+        </div>
+
+        <div class="card ingresos">
+          <h3>Total ingresos</h3>
+          <p id="total-ingresos">$ 0</p>
+        </div>
+
+        <div class="card gastos">
+          <h3>Total gastos</h3>
+          <p id="total-gastos">$ 0</p>
+        </div>
+      </div>
+    </section>
+
+    <!--Zona principal: categorías y formulario -->
+    <div class="main-grid">
+
+      <!-- Gestión de categorías -->
+      <section class="categorias">
+        <h2>Categorías</h2>
+
+        <div class="form-inline">
+          <input
+            type="text"
+            id="categoria-nombre"
+            placeholder="Nueva categoría"
+            autocomplete="off"
+            maxlength="40"
+          />
+          <button type="button" onclick="agregarCategoria()">
+            + Agregar
+          </button>
+        </div>
+
+        <ul id="lista-categorias"></ul>
+      </section>
+
+      <!-- Formulario para registrar movimientos -->
+      <section class="movimientos">
+        <h2>Nuevo movimiento</h2>
+
+        <div class="tipo-toggle">
+          <input type="radio" id="tipo-ingreso" name="tipo" value="ingreso" checked />
+          <label for="tipo-ingreso">Ingreso</label>
+
+          <input type="radio" id="tipo-gasto" name="tipo" value="gasto" />
+          <label for="tipo-gasto">Gasto</label>
+        </div>
+
+        <label for="monto">Monto</label>
+        <input type="number" id="monto" placeholder="0.00" min="0.01" step="0.01" />
+
+        <label for="descripcion">Descripción</label>
+        <input type="text" id="descripcion" placeholder="Ej: Supermercado" maxlength="80" />
+
+        <label for="categoria-select">Categoría</label>
+        <select id="categoria-select"></select>
+
+        <label for="fecha">Fecha</label>
+        <input type="date" id="fecha" />
+
+        <label for="foto">Foto del gasto (opcional)</label>
+        <input type="file" id="foto" accept="image/*" />
+
+        <button type="button" onclick="agregarMovimiento()">
+          Guardar movimiento
+        </button>
+      </section>
+
+    </div>
+
+    <!-- Parte inferior: historial y recordatorios -->
+    <div class="bottom-grid">
+
+      <!-- Historial de movimientos -->
+      <section class="historial">
+        <h2>Historial</h2>
+
+        <button id="btn-exportar" class="btn-exportar">
+          Descargar historial (CSV)
+        </button>
+
+        <ul id="lista-movimientos"></ul>
+      </section>
+
+      <!-- Recordatorios de pagos o tareas -->
+      <section class="recordatorios">
+        <h2>Recordatorios</h2>
+
+        <input
+          type="text"
+          id="texto-recordatorio"
+          placeholder="Ej: Pagar arriendo"
+        />
+        <input type="date" id="fecha-recordatorio" />
+        <button onclick="agregarRecordatorio()">
+          Agregar recordatorio
+        </button>
+
+        <ul id="lista-recordatorios"></ul>
+      </section>
+
+    </div>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
